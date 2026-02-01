@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secured-pod
+  namespace: audit-zone  
+spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    seccompProfile:
+      type: RuntimeDefault  
+  containers:
+  - name: alpine
+    image: alpine
+    command: ["sleep", "3600"]
+    securityContext:
+      privileged: false
+      allowPrivilegedEscalation: false
+      capabilities:
+        drop:
+          - ALL    
+  restartPolicy: Never
