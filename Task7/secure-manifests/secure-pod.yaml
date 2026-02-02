@@ -2,7 +2,6 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: secured-pod
-  namespace: audit-zone  
 spec:
   securityContext:
     runAsNonRoot: true
@@ -16,7 +15,8 @@ spec:
     command: ["sleep", "3600"]
     securityContext:
       privileged: false
-      allowPrivilegedEscalation: false
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
       capabilities:
         drop:
           - ALL    

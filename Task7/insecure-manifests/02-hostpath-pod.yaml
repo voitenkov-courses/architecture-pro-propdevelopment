@@ -7,9 +7,9 @@ spec:
   - name: alpine
     image: alpine
     command: ["sleep", "3600"]
-  volumeMounts:
-    - name: host-volume
-      mountPath: /host
+    volumeMounts:
+      - name: host-volume
+        mountPath: /host
   volumes:
     - name: host-volume
       hostPath:
