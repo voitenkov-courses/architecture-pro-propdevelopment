@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath-pod
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command: ["sleep", "3600"]
+    volumeMounts:
+      - name: host-volume
+        mountPath: /host
+  volumes:
+    - name: host-volume
+      hostPath:
+        path: /tmp/demo
+        type: DirectoryOrCreate
+  restartPolicy: Never
